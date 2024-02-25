@@ -1,18 +1,31 @@
 function getComputerChoice() {
   const choices = ["rock", "paper", "scissors"];
-  return choices[Math.floor(Math.random() * 3)];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  return choices[randomIndex];
 }
 
 function getPlayerChoice() {
-  const playerChoice = prompt("chose Rock, Paper or Scissors", "rock");
-  return playerChoice.toLowerCase();
+  let playerChoice = prompt(
+    "Choose Rock, Paper, or Scissors",
+    "rock"
+  ).toLowerCase();
+
+  // * user input validation
+  while (!["rock", "paper", "scissors"].includes(playerChoice)) {
+    playerChoice = prompt(
+      "Invalid choice. Please choose Rock, Paper, or Scissors",
+      "rock"
+    ).toLowerCase();
+  }
+
+  return playerChoice;
 }
 
 function playRound(player, computer) {
   if (
-    (player == "rock" && computer == "rock") ||
-    (player == "paper" && computer == "paper") ||
-    (player == "scissors" && computer == "scissors")
+    (player === "rock" && computer === "rock") ||
+    (player === "paper" && computer === "paper") ||
+    (player === "scissors" && computer === "scissors")
   ) {
     console.log("Tie!");
     return;
