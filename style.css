@@ -1,0 +1,51 @@
+@font-face {
+  font-family: Jersey;
+  src: url(font/Jersey_15/Jersey15-Regular.ttf);
+}
+
+body {
+  font-family: Jersey, sans-serif;
+}
+
+.round{
+  display: block;
+  text-align: center;
+  font-size: 100px;
+}
+
+.star {
+    display: block;
+    text-align: center;
+}
+
+.stars{
+    display: flex;
+    justify-content: center;
+}
+.container {
+  flex: auto;
+  display: flex;
+  align-items: center;
+}
+
+.right {
+    width: 40vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+.left {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.down {
+    font-size: 30px;
+    text-align: center;
+}

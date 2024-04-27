@@ -3,28 +3,69 @@ const result = document.querySelector(".result");
 const score = document.querySelector(".score");
 const winner = document.querySelector(".winner");
 
+const round = document.querySelector(".count");
+const stars = document.querySelector(".stars");
+
+function winRestart() {
+  // Create a new div
+  const div = document.createElement("div");
+
+  // Add the class and styles to the div
+  div.style.position = "fixed";
+  div.style.top = "50%";
+  div.style.left = "50%";
+  div.style.transform = "translate(-50%, -50%)";
+  div.style.width = "100vw";
+  div.style.fontSize = "5em"; // Increase the font size
+  div.style.textAlign = "center";
+
+  // Add the text to the div
+  div.textContent = "You Win";
+
+  // Remove all existing children from the body
+  while (document.body.firstChild) {
+    document.body.removeChild(document.body.firstChild);
+  }
+
+  // Append the div to the body
+  document.body.appendChild(div);
+}
+
+function loseRestart() {
+  // Create a new div
+  const div = document.createElement("div");
+
+  // Add the class and styles to the div
+  div.style.position = "fixed";
+  div.style.top = "50%";
+  div.style.left = "50%";
+  div.style.transform = "translate(-50%, -50%)";
+  div.style.width = "100vw";
+  div.style.fontSize = "5em"; // Increase the font size
+  div.style.textAlign = "center";
+
+  // Add the text to the div
+  div.textContent = "You Lose";
+
+  // Remove all existing children from the body
+  while (document.body.firstChild) {
+    document.body.removeChild(document.body.firstChild);
+  }
+
+  // Append the div to the body
+  document.body.appendChild(div);
+}
+
 function getComputerChoice() {
   const choices = ["rock", "paper", "scissors"];
   const randomIndex = Math.floor(Math.random() * choices.length);
   return choices[randomIndex];
 }
 
-/* function getPlayerChoice() {
-  let playerChoice = prompt(
-    "Choose Rock, Paper, or Scissors",
-    "rock"
-  ).toLowerCase();
+let playerScore = 0;
+let computerScore = 0;
 
-  // * user input validation
-  while (!["rock", "paper", "scissors"].includes(playerChoice)) {
-    playerChoice = prompt(
-      "Invalid choice. Please choose Rock, Paper, or Scissors",
-      "rock"
-    ).toLowerCase();
-  }
-
-  return playerChoice;
-} */
+let roundCount = 1;
 
 function playRound(player, computer) {
   if (
@@ -32,6 +73,10 @@ function playRound(player, computer) {
     (player === "paper" && computer === "paper") ||
     (player === "scissors" && computer === "scissors")
   ) {
+    roundCount++;
+    round.textContent = roundCount;
+    stars.innerHTML +=
+      '<div class="star"><img src="images/star.svg" alt="computer-score" width="100px"></div>';
     result.textContent = "Tie!";
     return "tie";
   } else if (
@@ -39,39 +84,21 @@ function playRound(player, computer) {
     (player === "rock" && computer === "scissors") ||
     (player === "scissors" && computer === "paper")
   ) {
+    roundCount++;
+    round.textContent = roundCount;
+    stars.innerHTML +=
+      '<div class="star"><img src="images/star.svg" alt="computer-score" width="100px"></div>';
     result.textContent = `You Win! ${player} beats ${computer}`;
     return "player";
   } else {
+    roundCount++;
+    round.textContent = roundCount;
+    stars.innerHTML +=
+      '<div class="star"><img src="images/star.svg" alt="computer-score" width="100px"></div>';
     result.textContent = `You Lose! ${computer} beats ${player}`;
     return "computer";
   }
 }
-
-/* function playGame() {
-  let playerScore = 0;
-  let computerScore = 0;
-
-  const playerChoice = getPlayerChoice();
-  const computerSelection = getComputerChoice();
-
-  const round = playRound(playerChoice, computerSelection);
-
-  if (round == "player") playerScore++;
-  else if (round == "computer") computerScore++;
-
-  console.log(`*******************************`);
-
-  if (playerScore == computerScore) {
-    console.log("Tie!");
-  } else if (playerScore > computerScore) {
-    console.log("You Win!");
-  } else if (playerScore < computerScore) {
-    console.log("You Lose! Computer Win");
-  }
-} */
-
-let playerScore = 0;
-let computerScore = 0;
 
 choices.forEach((choice) =>
   choice.addEventListener("click", () => {
@@ -82,12 +109,20 @@ choices.forEach((choice) =>
     score.textContent =
       "Player " + playerScore + ":" + computerScore + " Computer";
 
-    if (playerScore == 5) {
+    if (playerScore == 3) {
       winner.textContent = "You Win!";
       playerScore = computerScore = 0;
-    } else if (computerScore == 5) {
+      winRestart();
+      setTimeout(function () {
+        location.reload();
+      }, 5000);
+    } else if (computerScore == 3) {
       winner.textContent = "Computer Win!";
       playerScore = computerScore = 0;
+      loseRestart();
+      setTimeout(function () {
+        location.reload();
+      }, 5000);
     }
   })
 );

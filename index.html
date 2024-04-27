@@ -1,20 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
     <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <div class="choices">
-        <button class="rock">Rock</button>
-        <button class="paper">Paper</button>
-        <button class="scissors">Scissors</button>
+    <div class="round">Round <span class="count">1</span></div>
+    <div class="stars">
+        <div class="star"><img src="images/star.svg" alt="computer-score" width="100px"></div>
     </div>
-    <br>
-    <div class="result"></div>
-    <div class="score"></div>
-    <div class="winner"></div>
+    <div class="container">
+        <div class="left">
+            <p style="font-size: 50px;">Player Choice</p>
+            <div class="player-choices">
+                <button class="rock">
+                    <img src="images/rock.svg" alt="rock" width="100px" />
+                </button>
+                <button class="paper">
+                    <img src="images/paper.svg" alt="paper" width="100px" />
+                </button>
+                <button class="scissors">
+                    <img src="images/scissors.svg" alt="scissors" width="100px" />
+                </button>
+            </div>
+        </div>
+
+        <div class="right">
+            <p style="font-size: 50px;">Computer Choice</p>
+            <div class="computer-choice"><img src="images/question.svg" alt="computer-choice" width="100px"></div>
+        </div>
+
+    </div> <br />
+
+    <div class="down">
+        <div class="result"></div>
+        <div class="score"></div>
+        <div class="winner"></div>
+    </div>
 </body>
+
 </html>
